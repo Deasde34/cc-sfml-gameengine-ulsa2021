@@ -10,7 +10,7 @@ float friction, float restitution)
   body = wolrd->CreateBody(bodyDef);
 
   polysonShape = new b2PolygonShape();
-  polysonShape->SetAsBox(width, height, *origin, angle);
+  polysonShape->SetAsBox(width / 2, height / 2, *origin, angle);
 
   fixtureDef = new b2FixtureDef();
   fixtureDef->density = density;
@@ -41,4 +41,8 @@ sf::Vector2f Rigidbody::GetPosition2SFML() const
 void Rigidbody::MoveBody(b2Vec2* velocity)
 {
   body->SetLinearVelocity(*velocity);
+}
+void Rigidbody::FreezeRotation(bool freeze)
+{
+  body->SetFixedRotation(freeze);
 }
